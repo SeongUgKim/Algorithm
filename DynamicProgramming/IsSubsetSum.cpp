@@ -1,5 +1,5 @@
 #include <vector>
-
+using namespace std;
 // A recursive solution for subset sum problem
 bool isSubsetSumRecursive(vector<int>& set, int n, int sum) {
     if (sum == 0)
@@ -41,4 +41,5 @@ bool isSubsetSumDP(vector<int>& set, int n, int sum)
             dp[i][j] = dp[i - 1][j] || dp[i - 1][j - set[i - 1]];
         }
     }
+    return dp[n][sum];
 }
