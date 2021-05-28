@@ -1,5 +1,25 @@
 #include <vector>
 using namespace std;
+int topdown (vector<int>& set, int pos, int n, int sum, int S, vector<vector<int>> dp)
+{
+    if (pos == n)
+    {
+        if (sum == S)
+        {
+            return 1;
+        }
+        return 0;
+    }
+    if (dp[pos][sum] != -1)
+    {
+        return dp[pos][sum];
+    }
+    if (set[pos] > sum)
+    {
+        return dp[pos][sum] = topdown(set, pos + 1, n, sum, S, dp);
+    }
+    return dp[pos][sum] = topdown(set, pos + 1, sum, S, dp) + topdown(set, pos + 1, sum - set[pos], S, dp);
+}
 // A recursive solution
 int countSubsetRecursive(vector<int>& set, int n, int sum)
 {
