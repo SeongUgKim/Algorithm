@@ -1,7 +1,9 @@
+#include <vector>
+using namespace std;
 int solve(vector<int>& nums) {
     int n = nums.size();
     if (n == 0)
-    {
+    {       
         return 0;
     }
     int profit = 0;

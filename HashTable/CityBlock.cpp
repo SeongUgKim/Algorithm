@@ -1,3 +1,5 @@
+#include <vector>
+using namespace std;
 int solve(vector<vector<string>>& matrix, vector<string>& blocks) {
     unordered_map<string, pair<int, int>> mp;
     for (int i = 0; i < matrix.size(); ++i)
