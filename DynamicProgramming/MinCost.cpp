@@ -1,4 +1,4 @@
-#include "stdc++.h"
+#include <vector>
 using namespace std;
 
 vector<int> dp;
