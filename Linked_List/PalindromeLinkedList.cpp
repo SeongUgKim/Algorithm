@@ -1,4 +1,5 @@
-#include "stdc++.h"
+#include <vector>
+#include <stack>
 using namespace std;
 
 struct ListNode {
@@ -75,6 +76,7 @@ bool isPalindrome(ListNode* head)
         }
     }
     return true;*/
+    // with stack
     stack<int> nodeStack;
     ListNode* p = head;
     while (p != nullptr)
@@ -93,4 +95,36 @@ bool isPalindrome(ListNode* head)
         nodeStack.pop();
     }
     return true;
+    
+}
+// using vector
+bool isPalindrome(ListNode* head) {
+    vector<int> list;
+    ListNode* temp = head;
+    while (temp != nullptr) {
+        list.push_back(temp->val);
+        temp = temp->next;
+    }
+    int n = list.size();
+    for (int i = 0; i < n; ++i) {
+        if (list[i] != list[n - 1 - i]) return false;
+    }
+    return true;
+}
+
+// recursive solution
+ListNode* left;
+bool helper(ListNode* right) {
+    if (!right) return true;
+    bool flag = helper(right->next);
+    if (!flag) return false;
+    if (left->val != right->val) return false;
+    left = left->next;
+    if (left == right || right->next == left) return true;
+    return flag;
+}
+bool isPalindrome(ListNode* head) {
+    left = head;
+    ListNode* right = head;
+    return helper(right);
 }
