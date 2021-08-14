@@ -1,4 +1,5 @@
-#include "stdc++.h"
+#include <stack>
+#include <cmath>
 using namespace std;
 
 struct ListNode {
