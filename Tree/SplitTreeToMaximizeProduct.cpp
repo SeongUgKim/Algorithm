@@ -9,25 +9,22 @@ public:
 };
 
 int res;
+int total;
 int getSum(Tree* root) {
     if (!root) return 0;
     return root->val + getSum(root->left) + getSum(root->right);
 }
-void help(Tree* root, int total) {
-    if (!root) return;
-    if (!root->left && !root->right) {
-        res = max((total - root->val) * root->val, res);
-    };
-    int left = getSum(root->left);
-    int right = getSum(root->right);
+int help(Tree* root) {
+    if (!root) return 0;
+    int left = help(root->left);
+    int right = help(root->right);
     int max_val = max((total - right) * right, (total-left) * left);
     res = max(max_val, res);
-    help(root->left, total);
-    help(root->right, total); 
+    return root->val + left + right;
 }
 int solve(Tree* root) {
-    int total = getSum(root);
+    total = getSum(root);
     res = INT_MIN;
-    help(root, total);
+    help(root);
     return res;
 }
