@@ -55,6 +55,6 @@ string tree2str(TreeNode* root) {
 string tree2strFinal(TreeNode* root) {
     if (!root) return "";
     if (!root->right && !root->left) return to_string(root->val);
-    if (!root->right) return to_string(root->val) + "(" + tree2str(root->left) + ")";
-    return to_string(root->val) + "(" + tree2str(root->left) + ")" + "(" + tree2str(root->right) + ")";
+    if (!root->right) return to_string(root->val) + "(" + tree2strFinal(root->left) + ")";
+    return to_string(root->val) + "(" + tree2strFinal(root->left) + ")" + "(" + tree2strFinal(root->right) + ")";
 }
