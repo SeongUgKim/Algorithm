@@ -1,0 +1,8 @@
+// create cache
+git config --global credential.helper cache$ 
+// delete cache
+git config --global --unset credential.helper
+git config --system --unset credential.helper
+
+github access token
+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
