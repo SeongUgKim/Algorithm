@@ -3,7 +3,16 @@ using namespace std;
 // topdown
 int dp[396][396];
 int topdown(vector<int>& days, vector<int>& costs, int i, int cur) {
-    if (i == days.size()) return 0;
+int dp[400][400];
+    int topdown(vector<int>& days, vector<int>& costs, int next, int index) {
+        int n = days.size();
+        if (index == n) return 0;
+        int& res = dp[next][index];
+        if (res != -1) return res;
+        if (next > days[index]) return res = topdown(days, costs, next, index + 1);
+        return res = min(costs[0] + topdown(days, costs, days[index] + 1, index + 1), min(costs[1] + topdown(days, costs, days[index] + 7, index + 1), costs[2] + topdown(days, costs, days[index] + 30, index + 1)));
+    }
+    int mincostTickets(vector<int>& days, vector<int>& costs)    if (i == days.size()) return 0;
     if (dp[i][cur] != -1) return dp[i][cur];
     if (days[i] < cur) return dp[i + 1][cur] = topdown(days, costs, i + 1, cur);
     int one_day = dp[i + 1][cur] = topdown(days, costs, i + 1, days[i] + 1) + costs[0];
@@ -31,3 +40,4 @@ int mincostTickets(vector<int>& days, vector<int>& costs) {
     }
     return dp[0];        
 }
+
