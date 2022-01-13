@@ -5,13 +5,10 @@ using namespace std;
 
 int solve(vector<string>& words) {
     unordered_map<string, int> mp;
+    int max_size = 0;
     for (string s : words) {
         sort(s.begin(), s.end());
-        mp[s]++;
-    }
-    int max_size = 0;
-    for (auto m : mp) {
-        max_size = max(m.second, max_size);
+        max_size = max(max_size, ++mp[s]);
     }
     return max_size;
 
