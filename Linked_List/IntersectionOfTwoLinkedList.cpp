@@ -10,46 +10,25 @@ public:
 };
 
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-    unordered_map<ListNode*, int> mp;
-    ListNode* list1 = headA;
-    ListNode* list2 = headB;
-    while (list1 != nullptr)
-    {
-        mp[list1]++;
-        list1 = list1->next;
-    }
-    while (list2 != nullptr)
-    {
-        if (mp[list2] == 1)
-        {
-            break;
-        }
-        list2 = list2->next;
-    }
-    return list2;
+       	ListNode* a = headA;
+	ListNode* b = headB;
+	ListNode* ans = nullptr;
+	while (a) {
+		a->val *= -1;
+		a = a->next;
+	}
+	while (b) {
+		if (b->val < 0) {
+			ans = b;
+			break;
+		}
+		b = b->next;
+	}
+	a = headA;
+	while (a) {
+		a->val *= -1;
+		a = a->next;
+	}
+	return ans;
 }
-
-ListNode* solve(ListNode *headA, ListNode *headB) {
-    ListNode* list1 = headA;
-    ListNode* list2 = headB;
-    while (list1 != nullptr)
-    {
-        list1->val *= -1;
-        list1 = list1->next;
-    }
-    while (list2 != nullptr)
-    {
-        if (list2->val < 0)
-        {
-            break;
-        }
-        list2 = list2->next;
-    }
-    list1 = headA;
-    while (list1 != nullptr)
-    {
-        list1->val *= -1;
-        list1 = list1->next;
-    }
-    return list2;
-}
+	       
