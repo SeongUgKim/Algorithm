@@ -5,4 +5,5 @@ git config --global --unset credential.helper
 git config --system --unset credential.helper
 
 github access token
-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
+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
+
